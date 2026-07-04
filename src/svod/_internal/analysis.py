@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import dataclasses
+from pathlib import Path
 
 import duckdb
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 
@@ -152,3 +154,78 @@ def cluster_actors(
     centers = pd.DataFrame(scaler.inverse_transform(model.cluster_centers_), columns=features.columns)
     labels = pd.Series(model.labels_, index=features.index, name="cluster")
     return ClusterResult(labels=labels, k=k, silhouette=score, centers=centers)
+
+
+def net_adds(
+    panel: pd.DataFrame,
+    *,
+    start: str = "2021Q4",
+    end: str = "2022Q4",
+    top: int = 12,
+) -> pd.DataFrame:
+    """Compute per-actor net subscriber additions between two quarters.
+
+    Only actors present in both quarters are attributed individually; the
+    remainder is aggregated into an `Others` row so the rows sum to the
+    market delta across those actors.
+
+    Parameters:
+        panel: Tidy panel with `actor`, `quarter`, `subscribers` columns.
+        start: Baseline quarter.
+        end: Comparison quarter.
+        top: Number of largest absolute contributors to list individually.
+
+    Returns:
+        DataFrame with `actor` and `net_adds` columns, `Others` last.
+    """
+    wide = panel[panel["quarter"].isin([start, end])].pivot(index="actor", columns="quarter", values="subscribers")
+    delta = (wide[end] - wide[start]).dropna().astype("int64")
+    ranked = delta.reindex(delta.abs().sort_values(ascending=False).index)
+    head = ranked.head(top).sort_values(ascending=False)
+    others = int(ranked.iloc[top:].sum())
+    rows = [{"actor": actor, "net_adds": int(value)} for actor, value in head.items()]
+    rows.append({"actor": "Others", "net_adds": others})
+    return pd.DataFrame(rows)
+
+
+def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Path) -> Path:
+    """Explain cluster membership with a surrogate model and SHAP.
+
+    A random-forest classifier is fit to predict cluster labels from the
+    clustering features; SHAP values on the surrogate show which features
+    drive each segment. This validates that segments are feature-driven
+    rather than artifacts.
+
+    Parameters:
+        features: Feature matrix used for clustering.
+        labels: Cluster labels aligned to `features`.
+        output_png: Where to write the SHAP summary plot.
+
+    Returns:
+        Path of the written PNG.
+    """
+    import matplotlib  # noqa: PLC0415
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt  # noqa: PLC0415
+    import shap  # noqa: PLC0415
+
+    surrogate = RandomForestClassifier(n_estimators=200, random_state=0)
+    surrogate.fit(features, labels)
+    explainer = shap.TreeExplainer(surrogate)
+    shap_values = explainer.shap_values(features)
+    if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
+        shap_values = list(np.moveaxis(shap_values, -1, 0))
+    plt.figure()
+    shap.summary_plot(
+        shap_values,
+        features,
+        plot_type="bar",
+        show=False,
+        class_names=[f"cluster {c}" for c in sorted(labels.unique())],
+    )
+    output = Path(output_png)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(output, dpi=200, bbox_inches="tight")
+    plt.close("all")
+    return output

@@ -5,7 +5,15 @@ SVOD (Subscription Video on Demand) subscribers in the USA
 
 from __future__ import annotations
 
-from svod._internal.analysis import ClusterResult, actor_features, cluster_actors, concentration, market_summary
+from svod._internal.analysis import (
+    ClusterResult,
+    actor_features,
+    cluster_actors,
+    concentration,
+    market_summary,
+    net_adds,
+    shap_summary,
+)
 from svod._internal.cli import get_parser, main
 from svod._internal.data import QCReport, load_panel, qc_report
 
@@ -19,5 +27,7 @@ __all__: list[str] = [
     "load_panel",
     "main",
     "market_summary",
+    "net_adds",
     "qc_report",
+    "shap_summary",
 ]

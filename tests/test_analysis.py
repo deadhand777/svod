@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import pandas as pd
 import pytest
 
-from svod import actor_features, cluster_actors, concentration, market_summary
+from svod import actor_features, cluster_actors, concentration, market_summary, net_adds, shap_summary
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def test_market_summary_totals_and_growth(synthetic_panel: pd.DataFrame) -> None:
@@ -81,3 +86,29 @@ def test_cluster_actors_separates_regimes(synthetic_panel: pd.DataFrame) -> None
     assert result.labels["Challenger A"] == result.labels["Challenger B"]
     assert result.labels["Challenger A"] != result.labels["Niche B"]
     assert list(result.centers.columns) == list(features.columns)
+
+
+def test_net_adds_waterfall(synthetic_panel: pd.DataFrame) -> None:
+    """Net adds computed between quarters, Others row closes the ledger."""
+    adds = net_adds(synthetic_panel, top=3)
+    assert list(adds.columns) == ["actor", "net_adds"]
+    assert adds["actor"].iloc[-1] == "Others"
+    challenger_a = adds.loc[adds["actor"] == "Challenger A", "net_adds"].item()
+    assert challenger_a == 19_000_000 - 9_000_000
+    # ledger closes: sum of rows equals total market delta between the quarters
+    panel = synthetic_panel
+    total_start = panel.loc[panel["quarter"] == "2021Q4", "subscribers"].sum()
+    total_end = panel.loc[
+        (panel["quarter"] == "2022Q4") & (panel["actor"] != "Partial"), "subscribers"
+    ].sum()
+    assert adds["net_adds"].sum() == total_end - total_start
+
+
+def test_shap_summary_writes_png(synthetic_panel: pd.DataFrame, tmp_path: Path) -> None:
+    """Surrogate + SHAP produces a summary image."""
+    pytest.importorskip("shap")
+    features = actor_features(synthetic_panel)
+    result = cluster_actors(features)
+    out = shap_summary(features, result.labels, tmp_path / "shap.png")
+    assert out.exists()
+    assert out.stat().st_size > 0
