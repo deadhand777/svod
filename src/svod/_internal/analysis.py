@@ -204,9 +204,9 @@ def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Pa
     Returns:
         Path of the written PNG.
     """
-    import matplotlib  # noqa: PLC0415
+    import matplotlib as mpl  # noqa: PLC0415
 
-    matplotlib.use("Agg")
+    mpl.use("Agg")
     import matplotlib.pyplot as plt  # noqa: PLC0415
     import shap  # noqa: PLC0415
 
@@ -214,8 +214,6 @@ def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Pa
     surrogate.fit(features, labels)
     explainer = shap.TreeExplainer(surrogate)
     shap_values = explainer.shap_values(features)
-    if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
-        shap_values = list(np.moveaxis(shap_values, -1, 0))
     plt.figure()
     shap.summary_plot(
         shap_values,
