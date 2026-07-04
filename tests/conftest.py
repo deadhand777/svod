@@ -67,6 +67,7 @@ def synthetic_xlsx(tmp_path: Path, synthetic_panel: pd.DataFrame) -> Path:
             "Kpi_value": synthetic_panel["subscribers"],
         }
     )
+    raw = raw.sample(frac=1, random_state=0).reset_index(drop=True)
     path = tmp_path / "synthetic.xlsx"
     raw.to_excel(path, sheet_name="Data", index=False)
     return path

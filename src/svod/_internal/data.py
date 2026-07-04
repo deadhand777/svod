@@ -45,12 +45,16 @@ def load_panel(xlsx_path: str | Path) -> pd.DataFrame:
         sorted by actor and quarter.
 
     Raises:
-        ValueError: If expected columns are missing from the `Data` sheet.
+        ValueError: If expected columns are missing from the `Data` sheet, or if
+            the `Kpi_value` column contains null values.
     """
     raw = pd.read_excel(xlsx_path, sheet_name="Data")
     missing = set(_EXPECTED_COLUMNS) - set(raw.columns)
     if missing:
         raise ValueError(f"Missing expected columns in Data sheet: {sorted(missing)}")
+    n_null = int(raw["Kpi_value"].isna().sum())
+    if n_null:
+        raise ValueError(f"Data sheet contains {n_null} rows with missing Kpi_value; clean the export first.")
     dates = pd.to_datetime(raw["Fact_date"])
     panel = pd.DataFrame(
         {
@@ -82,5 +86,5 @@ def qc_report(panel: pd.DataFrame) -> QCReport:
         nulls=int(panel["subscribers"].isna().sum()),
         quarters=list(quarters),
         full_coverage_actors=sorted(full.index),
-        partial_actors=dict(partial.sort_index()),
+        partial_actors={str(actor): int(count) for actor, count in partial.sort_index().items()},
     )
