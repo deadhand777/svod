@@ -14,6 +14,12 @@ from svod._internal.analysis import (
     net_adds,
     shap_summary,
 )
+from svod._internal.charts import (
+    fig_cluster_scatter,
+    fig_concentration,
+    fig_market_overview,
+    fig_waterfall,
+)
 from svod._internal.cli import get_parser, main
 from svod._internal.data import QCReport, load_panel, qc_report
 
@@ -23,6 +29,10 @@ __all__: list[str] = [
     "actor_features",
     "cluster_actors",
     "concentration",
+    "fig_cluster_scatter",
+    "fig_concentration",
+    "fig_market_overview",
+    "fig_waterfall",
     "get_parser",
     "load_panel",
     "main",
