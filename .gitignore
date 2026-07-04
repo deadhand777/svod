@@ -2,6 +2,9 @@
 .idea/
 .vscode/
 
+# os
+.DS_Store
+
 # python
 *.egg-info/
 *.py[cod]
@@ -30,3 +33,4 @@ CLAUDE.md
 
 # proprietary input data — never commit
 /data/
+local/
