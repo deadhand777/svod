@@ -14,6 +14,8 @@ def test_market_summary_totals_and_growth(synthetic_panel: pd.DataFrame) -> None
     assert list(summary["quarter"]) == sorted(synthetic_panel["quarter"].unique())
     q1 = summary.loc[summary["quarter"] == "2021Q1", "total_subscribers"].item()
     assert q1 == 60_000_000 + 40_000_000 + 5_000_000 + 3_000_000 + 200_000 + 150_000
+    assert summary.loc[summary["quarter"] == "2021Q1", "active_actors"].item() == 6
+    assert summary.loc[summary["quarter"] == "2022Q2", "active_actors"].item() == 7
     assert pd.isna(summary["qoq_growth"].iloc[0])
     assert summary["yoy_growth"].iloc[4] == pytest.approx(
         summary["total_subscribers"].iloc[4] / summary["total_subscribers"].iloc[0] - 1
