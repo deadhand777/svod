@@ -50,6 +50,27 @@ def test_actor_features_full_coverage_only(synthetic_panel: pd.DataFrame) -> Non
     assert challenger["deceleration"] == pytest.approx(challenger["growth_2022"] - challenger["growth_2021"])
 
 
+def test_actor_features_winsorizes_and_drops_nonfinite() -> None:
+    """Extreme growth is clipped to [-1, 2]; zero-base actors are dropped."""
+    quarters = ["2021Q1", "2021Q2", "2021Q3", "2021Q4", "2022Q1", "2022Q2", "2022Q3", "2022Q4"]
+    rocket = [100, 200, 400, 1000, 800, 500, 200, 100]
+    zero_start = [0, 10, 20, 30, 40, 50, 60, 70]
+    rows = []
+    for quarter, r_subs, z_subs in zip(quarters, rocket, zero_start):
+        rows.append({"actor": "Rocket", "quarter": quarter, "subscribers": r_subs})
+        rows.append({"actor": "ZeroStart", "quarter": quarter, "subscribers": z_subs})
+    panel = pd.DataFrame(rows)
+    features = actor_features(panel)
+    # ZeroStart has 0 subscribers in 2021Q1 -> infinite growth_2021 -> row dropped
+    assert "ZeroStart" not in features.index
+    rocket_features = features.loc["Rocket"]
+    # raw growth_2021 is 1000/100 - 1 = 9.0, winsorized down to the 2.0 bound
+    assert rocket_features["growth_2021"] == pytest.approx(2.0)
+    assert rocket_features["growth_2022"] == pytest.approx(100 / 1000 - 1)
+    # deceleration computed AFTER winsorizing: -0.9 - 2.0
+    assert rocket_features["deceleration"] == pytest.approx(-2.9)
+
+
 def test_cluster_actors_separates_regimes(synthetic_panel: pd.DataFrame) -> None:
     """Challengers land in one cluster, distinct from niche actors."""
     features = actor_features(synthetic_panel)
