@@ -11,8 +11,10 @@ from svod._internal.analysis import (
     cluster_actors,
     concentration,
     market_summary,
+    momentum,
     net_adds,
     shap_summary,
+    share_shift,
 )
 from svod._internal.charts import (
     fig_cluster_scatter,
@@ -39,7 +41,9 @@ __all__: list[str] = [
     "load_panel",
     "main",
     "market_summary",
+    "momentum",
     "net_adds",
     "qc_report",
     "shap_summary",
+    "share_shift",
 ]
