@@ -1,29 +1,40 @@
 from __future__ import annotations
 
+import copy
 from typing import TYPE_CHECKING
 
 import plotly.graph_objects as go
+import plotly.io as pio
 from plotly.subplots import make_subplots
 
 if TYPE_CHECKING:
     import pandas as pd
 
-_TEMPLATE = "plotly_white"
-
-# Categorical palette (fixed order, never cycled): blue, aqua, yellow, green,
-# violet, red, magenta, orange.
+# Categorical palette (fixed order, never cycled): navy, orange, teal, burnt
+# orange, light steel, sand, mid navy, ochre. Dataxis brand: navy + orange led.
 _CATEGORICAL = [
-    "#2a78d6",
-    "#1baf7a",
-    "#eda100",
-    "#008300",
-    "#4a3aa7",
-    "#e34948",
-    "#e87ba4",
-    "#eb6834",
+    "#253861",
+    "#EA993F",
+    "#2A9D8F",
+    "#C36E28",
+    "#7E93B8",
+    "#E9C46A",
+    "#37506E",
+    "#B5651D",
 ]
 _STATUS_GOOD = "#0ca30c"
 _STATUS_CRITICAL = "#d03b3b"
+
+_BRAND_NAVY = "#142F4E"
+_GRID = "#E6E9EF"
+
+# Deep-copy so we don't mutate the globally-shared plotly_white template.
+_TEMPLATE = copy.deepcopy(pio.templates["plotly_white"])
+_TEMPLATE.layout.colorway = _CATEGORICAL
+_TEMPLATE.layout.font.color = _BRAND_NAVY
+_TEMPLATE.layout.title.font.color = _BRAND_NAVY
+_TEMPLATE.layout.xaxis.gridcolor = _GRID
+_TEMPLATE.layout.yaxis.gridcolor = _GRID
 
 
 def fig_market_overview(market: pd.DataFrame) -> go.Figure:

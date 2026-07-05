@@ -1,0 +1,35 @@
+/* Dataxis brand palette — overrides Material color tokens per scheme.
+   Tokens sampled from dataxis.com brand assets (navy #142F4E, orange #EA993F). */
+
+/* Light scheme */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #142F4E;
+  --md-primary-fg-color--light: #234A73;
+  --md-primary-fg-color--dark: #102949;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+  --md-accent-fg-color: #EA993F;
+  --md-typeset-a-color: #142F4E;
+}
+
+/* Dark scheme (slate) */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #102949;
+  --md-primary-fg-color--light: #234A73;
+  --md-primary-fg-color--dark: #0b1d38;
+  --md-accent-fg-color: #EA993F;
+  --md-typeset-a-color: #F0A94F;
+}
+
+/* Brand buttons pick up accent orange */
+.md-typeset .md-button--primary {
+  background-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: #ffffff;
+}
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: #ffffff;
+}
