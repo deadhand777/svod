@@ -239,7 +239,7 @@ def fig_share_treemap(shift: pd.DataFrame) -> go.Figure:
                 "cmid": 0,
                 "colorbar": {"title": "Share change"},
             },
-            hovertemplate="%{label}<br>share: %{value:.1%}<extra></extra>",
+            hovertemplate="%{label}<br>tracked share: %{value:.1%}<extra></extra>",
         ),
     )
     fig.update_layout(

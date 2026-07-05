@@ -232,9 +232,13 @@ def share_shift(
 ) -> pd.DataFrame:
     """Compute per-actor market-share shift between two quarters.
 
-    Only actors present in both quarters are attributed. The `top` largest
-    actors by ending share are listed individually; the remainder collapse
-    into an `Others` residual so shares and deltas stay additive.
+    Only actors present in both quarters are attributed. Shares are expressed
+    relative to the subscribers of that both-quarters cohort, not the full
+    per-quarter market total, matching the survivorship convention used by
+    `net_adds`, so they are not directly comparable to full-market
+    concentration shares. The `top` largest actors by ending share are listed
+    individually; the remainder collapse into an `Others` residual so shares
+    and deltas stay additive.
 
     Parameters:
         panel: Tidy panel with `actor`, `quarter`, `subscribers` columns.

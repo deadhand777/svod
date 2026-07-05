@@ -137,6 +137,7 @@ def test_share_shift_is_additive(synthetic_panel: pd.DataFrame) -> None:
     shift = share_shift(synthetic_panel)
     assert list(shift.columns) == ["actor", "share_start", "share_end", "share_delta"]
     assert shift["actor"].iloc[-1] == "Others"
+    assert "Partial" not in set(shift["actor"])
     assert shift["share_end"].sum() == pytest.approx(1.0)
     assert shift["share_delta"].sum() == pytest.approx(0.0)
     # Challenger A grew from ~7.5% to ~13.9% -> positive share delta
