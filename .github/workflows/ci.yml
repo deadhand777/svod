@@ -95,6 +95,8 @@ jobs:
         - highest
         - lowest-direct
         exclude:
+        - os: ubuntu-latest
+          resolution: lowest-direct
         - os: macos-latest
           resolution: lowest-direct
         - os: windows-latest
