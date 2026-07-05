@@ -16,6 +16,10 @@ nav = [
     { "Credits" = "credits.md" },
     { "License" = "license.md" },
   ] },
+  { "Analysis" = [
+    { "SVOD Market 2021-2022" = "analysis.md" },
+    { "Methodology" = "methodology.md" },
+  ] },
   { "API reference" = "reference/api.md" },
   { "Development" = [
     { "Contributing" = "contributing.md" },
