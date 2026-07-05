@@ -4,29 +4,29 @@
       "quarter": "2021Q1",
       "total_subscribers": 372569395,
       "active_actors": 117,
-      "qoq_growth": NaN,
-      "yoy_growth": NaN
+      "qoq_growth": null,
+      "yoy_growth": null
     },
     {
       "quarter": "2021Q2",
       "total_subscribers": 393509818,
       "active_actors": 119,
       "qoq_growth": 0.05620542986360966,
-      "yoy_growth": NaN
+      "yoy_growth": null
     },
     {
       "quarter": "2021Q3",
       "total_subscribers": 412118289,
       "active_actors": 121,
       "qoq_growth": 0.04728845418540484,
-      "yoy_growth": NaN
+      "yoy_growth": null
     },
     {
       "quarter": "2021Q4",
       "total_subscribers": 442528032,
       "active_actors": 119,
       "qoq_growth": 0.07378887035998538,
-      "yoy_growth": NaN
+      "yoy_growth": null
     },
     {
       "quarter": "2022Q1",

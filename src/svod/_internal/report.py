@@ -4,6 +4,7 @@ import json
 import shutil
 import subprocess
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from svod._internal.analysis import (
     actor_features,
@@ -15,6 +16,9 @@ from svod._internal.analysis import (
 )
 from svod._internal.charts import fig_cluster_scatter, fig_concentration, fig_market_overview, fig_waterfall
 from svod._internal.data import load_panel, qc_report
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 _PDF_NAME = "svod-analysis-2021-2022.pdf"
 
@@ -70,17 +74,22 @@ def build_report(
     members: dict[str, list[str]] = {}
     for actor, label in clusters.labels.items():
         members.setdefault(str(label), []).append(str(actor))
+
+    def _records(frame: pd.DataFrame) -> list[dict]:
+        """Convert a frame to records with NaN replaced by None (valid JSON null)."""
+        return frame.astype(object).where(frame.notna(), None).to_dict(orient="records")
+
     metrics = {
-        "market": market.to_dict(orient="records"),
-        "concentration": conc.to_dict(orient="records"),
+        "market": _records(market),
+        "concentration": _records(conc),
         "clusters": {
             "k": clusters.k,
             "silhouette": clusters.silhouette,
             "sizes": {label: len(actors) for label, actors in members.items()},
             "members": members,
-            "centers": clusters.centers.to_dict(orient="records"),
+            "centers": _records(clusters.centers),
         },
-        "net_adds": adds.to_dict(orient="records"),
+        "net_adds": _records(adds),
         "qc": {
             "n_rows": qc.n_rows,
             "n_actors": qc.n_actors,

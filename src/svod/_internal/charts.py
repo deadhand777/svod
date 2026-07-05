@@ -98,7 +98,7 @@ def fig_concentration(conc: pd.DataFrame) -> go.Figure:
 
 
 def fig_cluster_scatter(features: pd.DataFrame, labels: pd.Series) -> go.Figure:
-    """Chart actor segments as size vs growth-deceleration scatter.
+    """Chart actor segments as size vs growth-delta scatter.
 
     Parameters:
         features: Output of `actor_features`.

@@ -231,6 +231,10 @@ def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Pa
     surrogate.fit(features, labels)
     explainer = shap.TreeExplainer(surrogate)
     shap_values = explainer.shap_values(features)
+    if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:  # noqa: PLR2004
+        # Modern shap returns (n_samples, n_features, n_classes); summary_plot expects
+        # a list of per-class (n_samples, n_features) arrays for multiclass bar charts.
+        shap_values = list(np.moveaxis(shap_values, -1, 0))
     plt.figure()
     shap.summary_plot(
         shap_values,

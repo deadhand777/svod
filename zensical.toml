@@ -84,18 +84,6 @@ toggle.name = "Switch to system preference"
 icon = "fontawesome/brands/github"
 link = "https://github.com/deadhand777"
 
-[[project.extra.social]]
-icon = "fontawesome/brands/twitter"
-link = "https://twitter.com/pawamoy"
-
-[[project.extra.social]]
-icon = "fontawesome/brands/gitter"
-link = "https://gitter.im/svod/community"
-
-[[project.extra.social]]
-icon = "fontawesome/brands/python"
-link = "https://pypi.org/project/svod/"
-
 [project.extra.analytics.feedback]
 title = "Was this page helpful?"
 

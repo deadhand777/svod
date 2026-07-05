@@ -22,7 +22,7 @@ The quarterly panel comprises 951 rows across 131 actors and 8 quarters (2021Q1�
 
 - **HHI** — sum of squared subscriber shares × 10,000 (antitrust convention; >2,500 = highly concentrated).
 - **CR4 / CR8** — combined subscriber share of the top 4 / 8 platforms.
-- **Growth features** — per-actor 2021 growth (2021Q1→Q4), 2022 growth (2021Q4→2022Q4), deceleration (difference), log10 size. Growth winsorized to [-1, 2] so small-base outliers don't dominate.
+- **Growth features** — per-actor 2021 growth (2021Q1→Q4), 2022 growth (2021Q4→2022Q4), deceleration = growth_2022 − growth_2021 (negative values = slowdown), log10 size. Growth winsorized to [-1, 2] so small-base outliers don't dominate.
 
 ## Segmentation
 
@@ -34,5 +34,5 @@ Clusters are unsupervised, so we validate their interpretability with a surrogat
 
 ![SHAP feature importance per segment](charts/shap.png)
 
-The largest SHAP interaction values by far sit on `growth_2021`'s own diagonal (reaching beyond 0.5, versus at most around 0.05 for `log_size`), showing that segment membership is driven overwhelmingly by 2021 growth rate rather than platform size — the segments capture growth regimes, not scale.
+The chart shows mean absolute SHAP value per feature, stacked by cluster. `growth_2021` and `deceleration` dominate (roughly 0.14 and 0.085 combined mean |SHAP|), while `growth_2022` and `log_size` contribute little — segment membership is driven by 2021 growth rate and its change into 2022, not by platform size.
 

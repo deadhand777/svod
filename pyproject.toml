@@ -45,9 +45,6 @@ Documentation = "https://deadhand777.github.io/svod"
 Changelog = "https://deadhand777.github.io/svod/changelog"
 Repository = "https://github.com/deadhand777/svod"
 Issues = "https://github.com/deadhand777/svod/issues"
-Discussions = "https://github.com/deadhand777/svod/discussions"
-Gitter = "https://gitter.im/svod/community"
-Funding = "https://github.com/sponsors/deadhand777"
 
 [project.scripts]
 svod = "svod:main"
