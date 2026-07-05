@@ -22,11 +22,13 @@ from svod._internal.charts import (
 )
 from svod._internal.cli import get_parser, main
 from svod._internal.data import QCReport, load_panel, qc_report
+from svod._internal.report import build_report
 
 __all__: list[str] = [
     "ClusterResult",
     "QCReport",
     "actor_features",
+    "build_report",
     "cluster_actors",
     "concentration",
     "fig_cluster_scatter",
