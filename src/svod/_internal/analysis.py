@@ -226,9 +226,6 @@ def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Pa
     mpl.use("Agg")
     import matplotlib.pyplot as plt  # noqa: PLC0415
     import shap  # noqa: PLC0415
-    from cycler import cycler  # noqa: PLC0415
-
-    mpl.rcParams["axes.prop_cycle"] = cycler(color=["#253861", "#EA993F"])
 
     surrogate = RandomForestClassifier(n_estimators=200, random_state=0)
     surrogate.fit(features, labels)
