@@ -4,12 +4,17 @@
 #set par(justify: true)
 #show figure: set block(spacing: 0.7em)
 
+#let navy = rgb("#142F4E")
+#let orange = rgb("#EA993F")
+#show heading: set text(weight: "bold", fill: navy)
+
 #align(center)[
-  #text(size: 15pt, weight: "bold")[The US SVOD Market 2021–2022: The Great Deceleration]
+  #text(size: 15pt, weight: "bold", fill: navy)[The US SVOD Market 2021–2022: The Great Deceleration]
   #v(2pt)
   #text(size: 9pt, fill: gray)[Dataxis take-home · quarterly subscriber data, 131 platforms · full reproducible pipeline: https://deadhand777.github.io/svod]
 ]
 #v(4pt)
+#line(length: 100%, stroke: 1pt + orange)
 
 == The market in one number
 Total US SVOD subscriptions grew from 372.6M (2021Q1) to 510.3M (2022Q4), but YoY growth decelerated every quarter of 2022, from 23.2% to 15.3%. Netflix — the market's bellwether — lost 795k subscribers net over the year (H1-driven: -607k in Q1, -1.1M in Q2, with only a partial H2 rebound), the largest decline of any platform in the dataset.
