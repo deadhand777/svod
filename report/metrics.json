@@ -1,0 +1,448 @@
+{
+  "market": [
+    {
+      "quarter": "2021Q1",
+      "total_subscribers": 372569395,
+      "active_actors": 117,
+      "qoq_growth": NaN,
+      "yoy_growth": NaN
+    },
+    {
+      "quarter": "2021Q2",
+      "total_subscribers": 393509818,
+      "active_actors": 119,
+      "qoq_growth": 0.05620542986360966,
+      "yoy_growth": NaN
+    },
+    {
+      "quarter": "2021Q3",
+      "total_subscribers": 412118289,
+      "active_actors": 121,
+      "qoq_growth": 0.04728845418540484,
+      "yoy_growth": NaN
+    },
+    {
+      "quarter": "2021Q4",
+      "total_subscribers": 442528032,
+      "active_actors": 119,
+      "qoq_growth": 0.07378887035998538,
+      "yoy_growth": NaN
+    },
+    {
+      "quarter": "2022Q1",
+      "total_subscribers": 458996546,
+      "active_actors": 118,
+      "qoq_growth": 0.03721462327611369,
+      "yoy_growth": 0.2319759812799438
+    },
+    {
+      "quarter": "2022Q2",
+      "total_subscribers": 473015950,
+      "active_actors": 118,
+      "qoq_growth": 0.030543593676628733,
+      "yoy_growth": 0.20204357899908865
+    },
+    {
+      "quarter": "2022Q3",
+      "total_subscribers": 489064565,
+      "active_actors": 120,
+      "qoq_growth": 0.03392827451167335,
+      "yoy_growth": 0.18670919989187862
+    },
+    {
+      "quarter": "2022Q4",
+      "total_subscribers": 510268406,
+      "active_actors": 119,
+      "qoq_growth": 0.04335591354896051,
+      "yoy_growth": 0.15307589373230934
+    }
+  ],
+  "concentration": [
+    {
+      "quarter": "2021Q1",
+      "hhi": 1220.4118911934615,
+      "cr4": 0.6232778808898138,
+      "cr8": 0.8009129144920774
+    },
+    {
+      "quarter": "2021Q2",
+      "hhi": 1142.7581079463814,
+      "cr4": 0.5958290524786856,
+      "cr8": 0.7942232994044383
+    },
+    {
+      "quarter": "2021Q3",
+      "hhi": 1051.629703169891,
+      "cr4": 0.5688211158228894,
+      "cr8": 0.7707749461223256
+    },
+    {
+      "quarter": "2021Q4",
+      "hhi": 1018.2947476592673,
+      "cr4": 0.5541078943446457,
+      "cr8": 0.7705950817597019
+    },
+    {
+      "quarter": "2022Q1",
+      "hhi": 980.9937762763077,
+      "cr4": 0.5385375797577353,
+      "cr8": 0.7590664571144725
+    },
+    {
+      "quarter": "2022Q2",
+      "hhi": 959.5870111338481,
+      "cr4": 0.5269118810898449,
+      "cr8": 0.7532390821070621
+    },
+    {
+      "quarter": "2022Q3",
+      "hhi": 935.3034612247299,
+      "cr4": 0.5173351416289994,
+      "cr8": 0.7485603419254061
+    },
+    {
+      "quarter": "2022Q4",
+      "hhi": 907.7181385715065,
+      "cr4": 0.5099165634017325,
+      "cr8": 0.7387397780610387
+    }
+  ],
+  "clusters": {
+    "k": 2,
+    "silhouette": 0.6394858026638552,
+    "sizes": {
+      "0": 98,
+      "1": 7
+    },
+    "members": {
+      "0": [
+        "Acorn TV",
+        "Allblk",
+        "Amazon Prime Video",
+        "Apple TV+",
+        "Arrow Player",
+        "AsianCrush",
+        "BET+",
+        "BlazeTV+",
+        "Boomerang",
+        "Britbox",
+        "Broadway HD",
+        "Brown Sugar",
+        "C Spire",
+        "Chaiflicks",
+        "College Sports Live",
+        "Crunchyroll",
+        "CuriosityStream",
+        "Dazn",
+        "Demand Africa",
+        "Disney+",
+        "Dropout",
+        "ESPN D2C",
+        "Eros Now",
+        "F1 TV",
+        "FUNimation",
+        "Fanatiz",
+        "Fandor",
+        "Film Movement PLus",
+        "Flix Premiere",
+        "Flixfling",
+        "FloSports",
+        "FreeCast",
+        "Frndly TV",
+        "Gaia.com",
+        "HBO Max (2020-2023)",
+        "Hallmark+",
+        "Hi-YAH",
+        "HiDive",
+        "History Vault",
+        "Hoichoi",
+        "HooplaKidz Plus",
+        "Hulu",
+        "Indieflix",
+        "Izzy Stream Israel",
+        "Kartina.TV",
+        "Kocowa+",
+        "Laugh Out Loud",
+        "Lifetime Movie Club",
+        "MHz Choice",
+        "MLB.TV",
+        "Magellan TV Now",
+        "Met Opera on Demand",
+        "Metrograph",
+        "Motor Trend On Demand",
+        "Mubi",
+        "MyOutdoorTV",
+        "NBA League Pass",
+        "Nebula.tv",
+        "Netflix",
+        "Night Flight Plus",
+        "Noggin",
+        "OUTtv",
+        "OVID",
+        "PBS Passport",
+        "PaulaDeen.com",
+        "Philo TV",
+        "Poker Go",
+        "Pumpone",
+        "Pureflix",
+        "Qello Concerts",
+        "Qwest TV",
+        "Retrocrush",
+        "Rooster Teeth",
+        "Screambox",
+        "Showtime Streaming",
+        "Shudder",
+        "Sling TV",
+        "Smithsonian Earth TV",
+        "Starz",
+        "Sun NXT",
+        "Sundance Now",
+        "TYT Network",
+        "Tastemade+",
+        "Tennis Channel Plus",
+        "The Criterion Channel",
+        "The Film Detective",
+        "Topic",
+        "True Story",
+        "UFC Fight Pass",
+        "Univision Now",
+        "VRV",
+        "Viki",
+        "WOW Presents Plus",
+        "Wow! TV+",
+        "YouTube Premium",
+        "YouTube TV USA",
+        "Yuppflix",
+        "i-ON TV"
+      ],
+      "1": [
+        "Discovery+",
+        "Dove Channel",
+        "Fox Nation",
+        "Fubo.tv USA",
+        "Paramount+",
+        "Peacock Premium",
+        "Vidgo"
+      ]
+    },
+    "centers": [
+      {
+        "log_size": 5.169107080271698,
+        "growth_2021": 0.166492034779054,
+        "growth_2022": 0.22594701321482558,
+        "deceleration": 0.059454978435771605
+      },
+      {
+        "log_size": 6.415554765636766,
+        "growth_2021": 1.3921178304827508,
+        "growth_2022": 0.5502514998250013,
+        "deceleration": -0.8418663306577493
+      }
+    ]
+  },
+  "net_adds": [
+    {
+      "actor": "Paramount+",
+      "net_adds": 14981000
+    },
+    {
+      "actor": "Peacock Premium",
+      "net_adds": 11915408
+    },
+    {
+      "actor": "Amazon Prime Video",
+      "net_adds": 5245681
+    },
+    {
+      "actor": "Apple TV+",
+      "net_adds": 5080667
+    },
+    {
+      "actor": "YouTube Premium",
+      "net_adds": 4950506
+    },
+    {
+      "actor": "ESPN D2C",
+      "net_adds": 3600000
+    },
+    {
+      "actor": "Disney+",
+      "net_adds": 3330000
+    },
+    {
+      "actor": "Hulu",
+      "net_adds": 2800000
+    },
+    {
+      "actor": "Crunchyroll",
+      "net_adds": 2643052
+    },
+    {
+      "actor": "Discovery+",
+      "net_adds": 1860626
+    },
+    {
+      "actor": "HBO Max (2020-2023)",
+      "net_adds": 1703467
+    },
+    {
+      "actor": "AMC Plus",
+      "net_adds": 1342600
+    },
+    {
+      "actor": "Others",
+      "net_adds": 8547713
+    }
+  ],
+  "qc": {
+    "n_rows": 951,
+    "n_actors": 131,
+    "duplicates": 0,
+    "nulls": 0,
+    "quarters": [
+      "2021Q1",
+      "2021Q2",
+      "2021Q3",
+      "2021Q4",
+      "2022Q1",
+      "2022Q2",
+      "2022Q3",
+      "2022Q4"
+    ],
+    "full_coverage_actors": [
+      "Acorn TV",
+      "Allblk",
+      "Amazon Prime Video",
+      "Apple TV+",
+      "Arrow Player",
+      "AsianCrush",
+      "BET+",
+      "BlazeTV+",
+      "Boomerang",
+      "Britbox",
+      "Broadway HD",
+      "Brown Sugar",
+      "C Spire",
+      "Chaiflicks",
+      "College Sports Live",
+      "Crunchyroll",
+      "CuriosityStream",
+      "Dazn",
+      "Demand Africa",
+      "Discovery+",
+      "Disney+",
+      "Dove Channel",
+      "Dropout",
+      "ESPN D2C",
+      "Eros Now",
+      "F1 TV",
+      "FUNimation",
+      "Fanatiz",
+      "Fandor",
+      "Film Movement PLus",
+      "Flix Premiere",
+      "Flixfling",
+      "FloSports",
+      "Fox Nation",
+      "FreeCast",
+      "Frndly TV",
+      "Fubo.tv USA",
+      "Gaia.com",
+      "HBO Max (2020-2023)",
+      "Hallmark+",
+      "Hi-YAH",
+      "HiDive",
+      "History Vault",
+      "Hoichoi",
+      "HooplaKidz Plus",
+      "Hulu",
+      "Indieflix",
+      "Izzy Stream Israel",
+      "Kartina.TV",
+      "Kocowa+",
+      "Laugh Out Loud",
+      "Lifetime Movie Club",
+      "MHz Choice",
+      "MLB.TV",
+      "Magellan TV Now",
+      "Met Opera on Demand",
+      "Metrograph",
+      "Motor Trend On Demand",
+      "Mubi",
+      "MyOutdoorTV",
+      "NBA League Pass",
+      "Nebula.tv",
+      "Netflix",
+      "Night Flight Plus",
+      "Noggin",
+      "OUTtv",
+      "OVID",
+      "PBS Passport",
+      "Paramount+",
+      "PaulaDeen.com",
+      "Peacock Premium",
+      "Philo TV",
+      "Poker Go",
+      "Pumpone",
+      "Pureflix",
+      "Qello Concerts",
+      "Qwest TV",
+      "Retrocrush",
+      "Rooster Teeth",
+      "Screambox",
+      "Showtime Streaming",
+      "Shudder",
+      "Sling TV",
+      "Smithsonian Earth TV",
+      "Starz",
+      "Sun NXT",
+      "Sundance Now",
+      "TYT Network",
+      "Tastemade+",
+      "Tennis Channel Plus",
+      "The Criterion Channel",
+      "The Film Detective",
+      "Topic",
+      "True Story",
+      "UFC Fight Pass",
+      "Univision Now",
+      "VRV",
+      "Vidgo",
+      "Viki",
+      "WOW Presents Plus",
+      "Wow! TV+",
+      "YouTube Premium",
+      "YouTube TV USA",
+      "Yuppflix",
+      "i-ON TV"
+    ],
+    "partial_actors": {
+      "AMC Plus": 6,
+      "AT&T TV Now": 2,
+      "Bally Sports+": 2,
+      "Bleacher Report Live": 3,
+      "BossTV": 4,
+      "Cultpix": 7,
+      "Curia": 6,
+      "Dekkoo": 7,
+      "DirecTV Stream": 6,
+      "France channel": 7,
+      "Fuse+": 6,
+      "Kinetic TV": 5,
+      "NFL Game Pass": 6,
+      "NFL+": 2,
+      "NHL.TV": 2,
+      "Pantaya": 7,
+      "Rabbit TV Plus": 3,
+      "Spuul": 1,
+      "Struum": 7,
+      "TVPlayer USA": 7,
+      "TVision": 1,
+      "Viaplay": 5,
+      "Vix Premium": 2,
+      "WWE Network": 1,
+      "WatchTV": 3,
+      "iQiYi": 3
+    }
+  }
+}
