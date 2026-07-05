@@ -52,4 +52,4 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
     - name: Build and deploy documentation to GitHub Pages
-      run: make run duty docs-deploy
+      run: make docs-deploy
