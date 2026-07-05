@@ -36,6 +36,12 @@ def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="svod")
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug._get_version()}")
     parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
+    subparsers = parser.add_subparsers(dest="command")
+    analyze = subparsers.add_parser("analyze", help="Run the SVOD market analysis pipeline.")
+    analyze.add_argument("xlsx", help="Path to the raw Dataxis xlsx export.")
+    analyze.add_argument("--docs-dir", default="docs", help="Docs root for interactive chart HTML.")
+    analyze.add_argument("--report-dir", default="report", help="Report root for PNGs, metrics and PDF.")
+    analyze.add_argument("--skip-pdf", action="store_true", help="Skip typst PDF compilation.")
     return parser
 
 
@@ -52,5 +58,19 @@ def main(args: list[str] | None = None) -> int:
     """
     parser = get_parser()
     opts = parser.parse_args(args=args)
+    if getattr(opts, "command", None) == "analyze":
+        from svod._internal.report import build_report  # noqa: PLC0415
+
+        metrics = build_report(
+            opts.xlsx,
+            docs_dir=opts.docs_dir,
+            report_dir=opts.report_dir,
+            skip_pdf=opts.skip_pdf,
+        )
+        qc = metrics["qc"]
+        clusters = metrics["clusters"]
+        print(f"Analyzed {qc['n_actors']} actors over {len(qc['quarters'])} quarters.")
+        print(f"Segments: k={clusters['k']} (silhouette {clusters['silhouette']:.2f}); artifacts written to {opts.docs_dir} and {opts.report_dir}.")
+        return 0
     print(opts)
     return 0
