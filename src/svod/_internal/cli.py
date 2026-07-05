@@ -70,7 +70,9 @@ def main(args: list[str] | None = None) -> int:
         qc = metrics["qc"]
         clusters = metrics["clusters"]
         print(f"Analyzed {qc['n_actors']} actors over {len(qc['quarters'])} quarters.")
-        print(f"Segments: k={clusters['k']} (silhouette {clusters['silhouette']:.2f}); artifacts written to {opts.docs_dir} and {opts.report_dir}.")
+        print(
+            f"Segments: k={clusters['k']} (silhouette {clusters['silhouette']:.2f}); artifacts written to {opts.docs_dir} and {opts.report_dir}.",
+        )
         return 0
     print(opts)
     return 0

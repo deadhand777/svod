@@ -61,7 +61,7 @@ def load_panel(xlsx_path: str | Path) -> pd.DataFrame:
             "actor": raw["Actor_label"].astype(str),
             "quarter": dates.dt.year.astype(str) + "Q" + dates.dt.quarter.astype(str),
             "subscribers": raw["Kpi_value"].astype("int64"),
-        }
+        },
     )
     return panel.sort_values(["actor", "quarter"], ignore_index=True)
 

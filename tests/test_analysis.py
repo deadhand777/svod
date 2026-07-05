@@ -23,7 +23,7 @@ def test_market_summary_totals_and_growth(synthetic_panel: pd.DataFrame) -> None
     assert summary.loc[summary["quarter"] == "2022Q2", "active_actors"].item() == 7
     assert pd.isna(summary["qoq_growth"].iloc[0])
     assert summary["yoy_growth"].iloc[4] == pytest.approx(
-        summary["total_subscribers"].iloc[4] / summary["total_subscribers"].iloc[0] - 1
+        summary["total_subscribers"].iloc[4] / summary["total_subscribers"].iloc[0] - 1,
     )
 
 
@@ -34,7 +34,7 @@ def test_concentration_known_values() -> None:
             "actor": ["A", "B", "C", "D"],
             "quarter": ["2021Q1"] * 4,
             "subscribers": [50, 30, 15, 5],
-        }
+        },
     )
     conc = concentration(panel)
     # shares: .5, .3, .15, .05 -> HHI = (0.25 + 0.09 + 0.0225 + 0.0025) * 10000 = 3650
@@ -61,7 +61,7 @@ def test_actor_features_winsorizes_and_drops_nonfinite() -> None:
     rocket = [100, 200, 400, 1000, 800, 500, 200, 100]
     zero_start = [0, 10, 20, 30, 40, 50, 60, 70]
     rows = []
-    for quarter, r_subs, z_subs in zip(quarters, rocket, zero_start):
+    for quarter, r_subs, z_subs in zip(quarters, rocket, zero_start, strict=True):
         rows.append({"actor": "Rocket", "quarter": quarter, "subscribers": r_subs})
         rows.append({"actor": "ZeroStart", "quarter": quarter, "subscribers": z_subs})
     panel = pd.DataFrame(rows)
@@ -99,7 +99,8 @@ def test_net_adds_waterfall(synthetic_panel: pd.DataFrame) -> None:
     panel = synthetic_panel
     total_start = panel.loc[panel["quarter"] == "2021Q4", "subscribers"].sum()
     total_end = panel.loc[
-        (panel["quarter"] == "2022Q4") & (panel["actor"] != "Partial"), "subscribers"
+        (panel["quarter"] == "2022Q4") & (panel["actor"] != "Partial"),
+        "subscribers",
     ].sum()
     assert adds["net_adds"].sum() == total_end - total_start
 

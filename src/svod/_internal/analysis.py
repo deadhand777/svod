@@ -32,12 +32,17 @@ def market_summary(panel: pd.DataFrame) -> pd.DataFrame:
         FROM panel
         GROUP BY quarter
         ORDER BY quarter
-        """
+        """,
     ).df()
     con.close()
     summary["qoq_growth"] = summary["total_subscribers"].pct_change()
     summary["yoy_growth"] = summary["total_subscribers"].pct_change(periods=4)
     return summary
+
+
+_HHI_SCALE = 10_000
+_CR4_TOP_N = 4
+_CR8_TOP_N = 8
 
 
 def concentration(panel: pd.DataFrame) -> pd.DataFrame:
@@ -47,8 +52,8 @@ def concentration(panel: pd.DataFrame) -> pd.DataFrame:
         panel: Tidy panel with `actor`, `quarter`, `subscribers` columns.
 
     Returns:
-        One row per quarter with `hhi` (Herfindahl–Hirschman index on the
-        0–10000 scale), `cr4` and `cr8` (top-4 / top-8 subscriber share).
+        One row per quarter with `hhi` (Herfindahl-Hirschman index on the
+        0-10000 scale), `cr4` and `cr8` (top-4 / top-8 subscriber share).
     """
     con = duckdb.connect()
     con.register("panel", panel)
@@ -58,16 +63,16 @@ def concentration(panel: pd.DataFrame) -> pd.DataFrame:
                subscribers / SUM(subscribers) OVER (PARTITION BY quarter) AS share,
                ROW_NUMBER() OVER (PARTITION BY quarter ORDER BY subscribers DESC) AS rank
         FROM panel
-        """
+        """,
     ).df()
     con.close()
     grouped = shares.groupby("quarter")
     return pd.DataFrame(
         {
-            "hhi": grouped["share"].apply(lambda s: float((s**2).sum() * 10_000)),
-            "cr4": shares[shares["rank"] <= 4].groupby("quarter")["share"].sum(),
-            "cr8": shares[shares["rank"] <= 8].groupby("quarter")["share"].sum(),
-        }
+            "hhi": grouped["share"].apply(lambda s: float((s**2).sum() * _HHI_SCALE)),
+            "cr4": shares[shares["rank"] <= _CR4_TOP_N].groupby("quarter")["share"].sum(),
+            "cr8": shares[shares["rank"] <= _CR8_TOP_N].groupby("quarter")["share"].sum(),
+        },
     ).reset_index()
 
 
@@ -108,7 +113,12 @@ def actor_features(panel: pd.DataFrame) -> pd.DataFrame:
     quarters = sorted(panel["quarter"].unique())
     counts = panel.groupby("actor").size()
     full = counts[counts == len(quarters)].index
-    wide = panel[panel["actor"].isin(full)].pivot(index="actor", columns="quarter", values="subscribers")
+    # pivot_table silently aggregates duplicate (actor, quarter) rows instead of raising; pivot fails loudly.
+    wide = panel[panel["actor"].isin(full)].pivot(  # noqa: PD010
+        index="actor",
+        columns="quarter",
+        values="subscribers",
+    )
     features = pd.DataFrame(index=wide.index)
     features["log_size"] = np.log10(wide["2022Q4"] + 1)
     features["growth_2021"] = wide["2021Q4"] / wide["2021Q1"] - 1
@@ -178,7 +188,12 @@ def net_adds(
     Returns:
         DataFrame with `actor` and `net_adds` columns, `Others` last.
     """
-    wide = panel[panel["quarter"].isin([start, end])].pivot(index="actor", columns="quarter", values="subscribers")
+    # pivot_table silently aggregates duplicate (actor, quarter) rows instead of raising; pivot fails loudly.
+    wide = panel[panel["quarter"].isin([start, end])].pivot(  # noqa: PD010
+        index="actor",
+        columns="quarter",
+        values="subscribers",
+    )
     delta = (wide[end] - wide[start]).dropna().astype("int64")
     ranked = delta.reindex(delta.abs().sort_values(ascending=False).index)
     head = ranked.head(top).sort_values(ascending=False)

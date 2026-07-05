@@ -11,8 +11,14 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 _QUARTER_ENDS = [
-    "2021-03-31", "2021-06-30", "2021-09-30", "2021-12-31",
-    "2022-03-31", "2022-06-30", "2022-09-30", "2022-12-31",
+    "2021-03-31",
+    "2021-06-30",
+    "2021-09-30",
+    "2021-12-31",
+    "2022-03-31",
+    "2022-06-30",
+    "2022-09-30",
+    "2022-12-31",
 ]
 
 # Actors chosen so cluster structure is unambiguous:
@@ -37,7 +43,7 @@ def synthetic_panel() -> pd.DataFrame:
     rows = [
         {"actor": actor, "quarter": f"{pd.Timestamp(date).year}Q{pd.Timestamp(date).quarter}", "subscribers": subs}
         for actor, series in _SYNTHETIC_SUBS.items()
-        for date, subs in zip(_QUARTER_ENDS, series)
+        for date, subs in zip(_QUARTER_ENDS, series, strict=True)
     ]
     rows += [
         {"actor": "Partial", "quarter": q, "subscribers": s}
@@ -65,7 +71,7 @@ def synthetic_xlsx(tmp_path: Path, synthetic_panel: pd.DataFrame) -> Path:
             "Kpi_label_corporate": "SVOD subscribers",
             "Fact_date": pd.to_datetime(synthetic_panel["quarter"].map(quarter_to_date)),
             "Kpi_value": synthetic_panel["subscribers"],
-        }
+        },
     )
     raw = raw.sample(frac=1, random_state=0).reset_index(drop=True)
     path = tmp_path / "synthetic.xlsx"

@@ -50,7 +50,11 @@ def fig_market_overview(market: pd.DataFrame) -> go.Figure:
         line_color=_CATEGORICAL[1],
         secondary_y=True,
     )
-    fig.update_layout(template=_TEMPLATE, title="US SVOD market: total subscribers and YoY growth", legend_orientation="h")
+    fig.update_layout(
+        template=_TEMPLATE,
+        title="US SVOD market: total subscribers and YoY growth",
+        legend_orientation="h",
+    )
     fig.update_yaxes(title_text="Subscribers", secondary_y=False)
     fig.update_yaxes(title_text="YoY growth", tickformat=".0%", secondary_y=True)
     return fig
@@ -68,12 +72,26 @@ def fig_concentration(conc: pd.DataFrame) -> go.Figure:
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_scatter(x=conc["quarter"], y=conc["hhi"], name="HHI", mode="lines+markers", line_color=_CATEGORICAL[0])
     fig.add_scatter(
-        x=conc["quarter"], y=conc["cr4"], name="CR4", mode="lines+markers", line_color=_CATEGORICAL[1], secondary_y=True,
+        x=conc["quarter"],
+        y=conc["cr4"],
+        name="CR4",
+        mode="lines+markers",
+        line_color=_CATEGORICAL[1],
+        secondary_y=True,
     )
     fig.add_scatter(
-        x=conc["quarter"], y=conc["cr8"], name="CR8", mode="lines+markers", line_color=_CATEGORICAL[2], secondary_y=True,
+        x=conc["quarter"],
+        y=conc["cr8"],
+        name="CR8",
+        mode="lines+markers",
+        line_color=_CATEGORICAL[2],
+        secondary_y=True,
     )
-    fig.update_layout(template=_TEMPLATE, title="Market concentration: HHI and top-N subscriber share", legend_orientation="h")
+    fig.update_layout(
+        template=_TEMPLATE,
+        title="Market concentration: HHI and top-N subscriber share",
+        legend_orientation="h",
+    )
     fig.update_yaxes(title_text="HHI (0-10000)", secondary_y=False)
     fig.update_yaxes(title_text="Top-N share", tickformat=".0%", secondary_y=True)
     return fig
