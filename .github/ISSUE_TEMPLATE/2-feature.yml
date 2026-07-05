@@ -3,8 +3,7 @@ description: Suggest a new feature or enhancement
 title: "[FEATURE] "
 labels: ["enhancement", "triage"]
 type: feature
-projects: ["drklein-rk/projects/27"]
-assignees: []
+assignees: [deadhand777]
 body:
   - type: markdown
     attributes:

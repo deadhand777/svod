@@ -3,8 +3,7 @@ description: Report a bug
 title: "[BUG] "
 labels: ["bug", "triage"]
 type: bug
-projects: ["drklein-rk/projects/27"]
-assignees: []
+assignees: [deadhand777]
 body:
   - type: markdown
     attributes:

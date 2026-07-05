@@ -3,8 +3,7 @@ description: Use this template for non-bug, non-feature tasks.
 title: "[TASK] "
 labels: ["task", "triage"]
 type: task
-projects: ["drklein-rk/projects/27"]
-assignees: []
+assignees: [deadhand777]
 body:
   - type: markdown
     attributes:
