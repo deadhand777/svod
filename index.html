@@ -60,6 +60,8 @@
     
       <link rel="stylesheet" href="./css/apidocs.css">
     
+      <link rel="stylesheet" href="./css/dataxis.css">
+    
     <script>__md_scope=new URL(".",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
@@ -146,7 +148,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -156,7 +158,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
     
       <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -310,6 +312,22 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./about/" class="md-tabs__link">
+        
+  
+  About
+
+      </a>
+    </li>
   
 
       
@@ -790,6 +808,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  About
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -844,10 +888,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#toolchain" class="md-nav__link">
+  <a href="#technology-stack" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Toolchain
+        Technology stack
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Data &amp; analysis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Visualization &amp; reporting
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooling-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Tooling &amp; development
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Project structure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Support
       </span>
     </span>
   </a>
@@ -896,7 +1001,10 @@
 <p>The <a href="analysis/">Analysis</a> page presents key insights into the US SVOD market for 2021–2022. See the <a href="methodology/">methodology</a> page for details on how these findings were produced.</p>
 <h1 id="svod">svod<a class="headerlink" href="#svod" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/deadhand777/svod/actions?query=workflow%3Aci"><img alt="ci" src="https://github.com/deadhand777/svod/workflows/ci/badge.svg" /></a>
-<a href="https://deadhand777.github.io/svod/"><img alt="documentation" src="https://img.shields.io/badge/docs-zensical-FF9100.svg?style=flat" /></a></p>
+<a href="https://deadhand777.github.io/svod/"><img alt="documentation" src="https://img.shields.io/badge/docs-zensical-FF9100.svg?style=flat" /></a>
+<a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/python-3.13-blue.svg?style=flat&amp;logo=python&amp;logoColor=white" /></a>
+<a href="https://github.com/astral-sh/uv"><img alt="uv" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" /></a>
+<a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" /></a></p>
 <p>Analysis of the US SVOD (Subscription Video on Demand) subscriber market,
 2021-2022, built on a Dataxis subscriber panel. The package exposes a
 reproducible pipeline (<code>svod analyze</code>) that ingests the raw panel and
@@ -912,14 +1020,94 @@ uv<span class="w"> </span>run<span class="w"> </span>svod<span class="w"> </span
 <code>report/svod-analysis-2021-2022.pdf</code>.</p>
 <p>The raw Dataxis dataset is excluded from this repository; only derived
 aggregates are published in the docs site and report artifacts.</p>
-<h2 id="toolchain">Toolchain<a class="headerlink" href="#toolchain" title="Permanent link">&para;</a></h2>
+<h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
+<p><code>svod</code> targets <strong>Python &gt;= 3.13</strong> and is built around a small, focused set of
+libraries. Each tool is chosen for a specific stage of the pipeline.</p>
+<h3 id="data-analysis">Data &amp; analysis<a class="headerlink" href="#data-analysis" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://duckdb.org/"><code>duckdb</code></a> for panel aggregation and market metrics</li>
-<li><a href="https://scikit-learn.org/"><code>scikit-learn</code></a> for growth-regime clustering</li>
-<li><a href="https://shap.readthedocs.io/"><code>shap</code></a> for surrogate-model segment interpretability</li>
-<li><a href="https://plotly.com/python/"><code>plotly</code></a> for interactive and exported charts</li>
-<li><a href="https://typst.app/"><code>typst</code></a> for the one-page PDF report</li>
+<li><a href="https://duckdb.org/"><code>duckdb</code></a> — in-process SQL engine used for panel
+  aggregation and market-concentration metrics; keeps heavy grouping/rollups
+  in fast columnar SQL instead of Python loops.</li>
+<li><a href="https://pandas.pydata.org/"><code>pandas</code></a> &amp;
+  <a href="https://numpy.org/"><code>numpy</code></a> — dataframe wrangling and numeric operations
+  that glue the ingestion, analysis, and charting stages together.</li>
+<li><a href="https://openpyxl.readthedocs.io/"><code>openpyxl</code></a> — reads the raw Dataxis
+  <code>.xlsx</code> subscriber panel during ingestion.</li>
+<li><a href="https://scikit-learn.org/"><code>scikit-learn</code></a> — clusters market actors into
+  growth regimes for segmentation.</li>
+<li><a href="https://shap.readthedocs.io/"><code>shap</code></a> — explains the surrogate model behind
+  each segment, making the clustering interpretable.</li>
 </ul>
+<h3 id="visualization-reporting">Visualization &amp; reporting<a class="headerlink" href="#visualization-reporting" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://plotly.com/python/"><code>plotly</code></a> — interactive HTML charts published to
+  the docs site.</li>
+<li><a href="https://github.com/plotly/Kaleido"><code>kaleido</code></a> &amp;
+  <a href="https://matplotlib.org/"><code>matplotlib</code></a> — static PNG export of the charts for
+  the PDF deliverable.</li>
+<li><a href="https://typst.app/"><code>typst</code></a> — compiles the one-page PDF report from the
+  computed metrics and exported assets.</li>
+</ul>
+<h3 id="tooling-development">Tooling &amp; development<a class="headerlink" href="#tooling-development" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.astral.sh/uv/"><code>uv</code></a> &amp;
+  <a href="https://direnv.net/"><code>direnv</code></a> — environment and dependency management; a
+  single <code>uv sync</code> provisions the project.</li>
+<li><a href="https://pawamoy.github.io/duty/"><code>duty</code></a> — task runner behind the <code>make</code>
+  wrapper (<code>scripts/make.py</code>), exposing <code>make setup</code>, <code>make check</code>, <code>make test</code>,
+  and friends.</li>
+<li><a href="https://docs.astral.sh/ruff/"><code>ruff</code></a> — linter and formatter
+  (<code>select = ["ALL"]</code>).</li>
+<li><a href="https://github.com/astral-sh/ty"><code>ty</code></a> — Astral's static type checker (used
+  instead of mypy/pyright).</li>
+<li><a href="https://docs.pytest.org/"><code>pytest</code></a> with
+  <a href="https://pytest-xdist.readthedocs.io/"><code>pytest-xdist</code></a>,
+  <a href="https://pytest-cov.readthedocs.io/"><code>pytest-cov</code></a>, and
+  <a href="https://github.com/pytest-dev/pytest-randomly"><code>pytest-randomly</code></a> —
+  parallelized, coverage-tracked, order-randomized test suite.</li>
+<li><a href="https://pawamoy.github.io/zensical/"><code>zensical</code></a> &amp;
+  <a href="https://mkdocstrings.github.io/"><code>mkdocstrings</code></a> — documentation site and
+  API reference generation.</li>
+<li><a href="https://backend.pdm-project.org/"><code>pdm-backend</code></a> — build backend with
+  dynamic versioning (<code>scripts/get_version.py</code>).</li>
+<li><a href="https://pawamoy.github.io/git-changelog/"><code>git-changelog</code></a> — changelog
+  generation from Conventional/Angular commit messages.</li>
+</ul>
+<h2 id="project-structure">Project structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>svod/
+├── src/svod/
+│   ├── __init__.py        # public API surface (only names in __all__ are exported)
+│   ├── __main__.py        # console entry point, re-imports main from _internal.cli
+│   ├── py.typed           # PEP 561 marker: ships type information
+│   └── _internal/         # implementation, kept out of the public namespace
+│       ├── data.py        # load &amp; quality-check the raw subscriber panel
+│       ├── analysis.py    # market summary, concentration, growth-regime clustering
+│       ├── charts.py      # Plotly figures for market, concentration, clusters
+│       ├── report.py      # orchestrates the pipeline and writes all artifacts
+│       ├── cli.py         # argparse-based command-line interface
+│       └── debug.py       # environment/debug-info reporting
+├── tests/                 # pytest suite, one module per _internal component
+├── config/                # all tool configs (ruff.toml, ty.toml, pytest.ini, coverage.ini)
+├── scripts/               # make.py (duty wrapper), get_version.py, gen_credits.py
+├── docs/                  # documentation sources, charts, and reference pages
+├── site/                  # built documentation site (zensical output)
+├── report/                # generated report artifacts (metrics.json, PDF, assets)
+├── data/                  # raw Dataxis dataset (excluded from version control)
+├── pyproject.toml         # project metadata, dependencies, and tool settings
+├── duties.py              # task definitions run by duty
+└── zensical.toml          # documentation site configuration
+</code></pre></div>
+<p>The package deliberately separates a thin <strong>public API</strong> (<code>src/svod/__init__.py</code>)
+from the implementation in <strong><code>src/svod/_internal/</code></strong>. Anything meant for
+consumers is re-exported through <code>__init__.py</code>; everything else stays internal.</p>
+<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
+<ul>
+<li>📖 <strong>Documentation</strong>: <a href="https://deadhand777.github.io/svod">https://deadhand777.github.io/svod</a></li>
+<li>🐛 <strong>Issues</strong>: <a href="https://github.com/deadhand777/svod/issues">GitHub Issues</a></li>
+<li>💬 <strong>Discussions</strong>: <a href="https://github.com/deadhand777/svod/discussions">GitHub Discussions</a></li>
+</ul>
+<hr />
+<p><strong>Made with ❤️ by <a href="https://github.com/deadhand777">@deadhand777</a></strong></p>
 
   
 
