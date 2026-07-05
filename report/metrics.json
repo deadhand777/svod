@@ -290,8 +290,40 @@
       "net_adds": 1342600
     },
     {
+      "actor": "Night Flight Plus",
+      "net_adds": -429
+    },
+    {
+      "actor": "PaulaDeen.com",
+      "net_adds": -1568
+    },
+    {
+      "actor": "Vidgo",
+      "net_adds": -2863
+    },
+    {
+      "actor": "PBS Passport",
+      "net_adds": -6900
+    },
+    {
+      "actor": "C Spire",
+      "net_adds": -13174
+    },
+    {
+      "actor": "Sling TV",
+      "net_adds": -152000
+    },
+    {
+      "actor": "Showtime Streaming",
+      "net_adds": -433674
+    },
+    {
+      "actor": "Netflix",
+      "net_adds": -795171
+    },
+    {
       "actor": "Others",
-      "net_adds": 8547713
+      "net_adds": 9953492
     }
   ],
   "qc": {

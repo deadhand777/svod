@@ -95,6 +95,10 @@ def test_net_adds_waterfall(synthetic_panel: pd.DataFrame) -> None:
     assert adds["actor"].iloc[-1] == "Others"
     challenger_a = adds.loc[adds["actor"] == "Challenger A", "net_adds"].item()
     assert challenger_a == 19_000_000 - 9_000_000
+    # a decliner beyond the top-3 positive contributors must still surface individually
+    assert "Giant A" in adds["actor"].to_numpy()
+    giant_a = adds.loc[adds["actor"] == "Giant A", "net_adds"].item()
+    assert giant_a == -2_000_000
     # ledger closes: sum of rows equals total market delta between the quarters
     panel = synthetic_panel
     total_start = panel.loc[panel["quarter"] == "2021Q4", "subscribers"].sum()

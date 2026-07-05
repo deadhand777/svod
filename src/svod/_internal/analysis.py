@@ -175,15 +175,16 @@ def net_adds(
 ) -> pd.DataFrame:
     """Compute per-actor net subscriber additions between two quarters.
 
-    Only actors present in both quarters are attributed individually; the
-    remainder is aggregated into an `Others` row so the rows sum to the
-    market delta across those actors.
+    Only actors present in both quarters are attributed individually. The
+    listed rows are the `top` positive contributors individually, every
+    declining actor, and an Others residual so the rows sum to the market
+    delta across those actors.
 
     Parameters:
         panel: Tidy panel with `actor`, `quarter`, `subscribers` columns.
         start: Baseline quarter.
         end: Comparison quarter.
-        top: Number of largest absolute contributors to list individually.
+        top: Number of largest positive contributors to list individually.
 
     Returns:
         DataFrame with `actor` and `net_adds` columns, `Others` last.
@@ -195,10 +196,11 @@ def net_adds(
         values="subscribers",
     )
     delta = (wide[end] - wide[start]).dropna().astype("int64")
-    ranked = delta.reindex(delta.abs().sort_values(ascending=False).index)
-    head = ranked.head(top).sort_values(ascending=False)
-    others = int(ranked.iloc[top:].sum())
-    rows = [{"actor": actor, "net_adds": int(value)} for actor, value in head.items()]
+    positive = delta[delta > 0].sort_values(ascending=False)
+    negative = delta[delta < 0].sort_values(ascending=False)
+    shown = pd.concat([positive.head(top), negative])
+    others = int(delta.sum() - shown.sum())
+    rows = [{"actor": actor, "net_adds": int(value)} for actor, value in shown.items()]
     rows.append({"actor": "Others", "net_adds": others})
     return pd.DataFrame(rows)
 
