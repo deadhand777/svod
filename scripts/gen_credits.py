@@ -77,7 +77,7 @@ def _set_license(metadata: PackageMetadata) -> None:
     if check_classifiers:
         license_names = [
             classifier.rsplit("::", 1)[1].strip()
-            for classifier in metadata["classifier"]
+            for classifier in metadata.get("classifier", [])
             if classifier.startswith("License ::")
         ]
         license_name = " + ".join(license_names)
