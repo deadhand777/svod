@@ -326,6 +326,152 @@
       "net_adds": 9953492
     }
   ],
+  "momentum": [
+    {
+      "quarter": "2021Q1",
+      "total_subscribers": 372569395,
+      "active_actors": 117,
+      "qoq_growth": null,
+      "yoy_growth": null,
+      "qoq_acceleration": null
+    },
+    {
+      "quarter": "2021Q2",
+      "total_subscribers": 393509818,
+      "active_actors": 119,
+      "qoq_growth": 0.05620542986360966,
+      "yoy_growth": null,
+      "qoq_acceleration": null
+    },
+    {
+      "quarter": "2021Q3",
+      "total_subscribers": 412118289,
+      "active_actors": 121,
+      "qoq_growth": 0.04728845418540484,
+      "yoy_growth": null,
+      "qoq_acceleration": -0.00891697567820482
+    },
+    {
+      "quarter": "2021Q4",
+      "total_subscribers": 442528032,
+      "active_actors": 119,
+      "qoq_growth": 0.07378887035998538,
+      "yoy_growth": null,
+      "qoq_acceleration": 0.026500416174580543
+    },
+    {
+      "quarter": "2022Q1",
+      "total_subscribers": 458996546,
+      "active_actors": 118,
+      "qoq_growth": 0.03721462327611369,
+      "yoy_growth": 0.2319759812799438,
+      "qoq_acceleration": -0.03657424708387169
+    },
+    {
+      "quarter": "2022Q2",
+      "total_subscribers": 473015950,
+      "active_actors": 118,
+      "qoq_growth": 0.030543593676628733,
+      "yoy_growth": 0.20204357899908865,
+      "qoq_acceleration": -0.006671029599484957
+    },
+    {
+      "quarter": "2022Q3",
+      "total_subscribers": 489064565,
+      "active_actors": 120,
+      "qoq_growth": 0.03392827451167335,
+      "yoy_growth": 0.18670919989187862,
+      "qoq_acceleration": 0.003384680835044618
+    },
+    {
+      "quarter": "2022Q4",
+      "total_subscribers": 510268406,
+      "active_actors": 119,
+      "qoq_growth": 0.04335591354896051,
+      "yoy_growth": 0.15307589373230934,
+      "qoq_acceleration": 0.009427639037287161
+    }
+  ],
+  "share_shift": [
+    {
+      "actor": "Amazon Prime Video",
+      "share_start": 0.21210027510205876,
+      "share_end": 0.1940767466848559,
+      "share_delta": -0.018023528417202866
+    },
+    {
+      "actor": "Netflix",
+      "share_start": 0.15373025693074027,
+      "share_end": 0.13163816162795533,
+      "share_delta": -0.022092095302784942
+    },
+    {
+      "actor": "Hulu",
+      "share_start": 0.10245177617561736,
+      "share_end": 0.09426849587560404,
+      "share_delta": -0.00818328030001332
+    },
+    {
+      "actor": "Paramount+",
+      "share_start": 0.0710918450797861,
+      "share_end": 0.09101922972049376,
+      "share_delta": 0.01992738464070766
+    },
+    {
+      "actor": "Disney+",
+      "share_start": 0.08751466987036695,
+      "share_end": 0.08236709827130903,
+      "share_delta": -0.005147571599057918
+    },
+    {
+      "actor": "Apple TV+",
+      "share_start": 0.0526791234668477,
+      "share_end": 0.0556219672744717,
+      "share_delta": 0.002942843807623996
+    },
+    {
+      "actor": "ESPN D2C",
+      "share_start": 0.048279266206651544,
+      "share_end": 0.0489017822354696,
+      "share_delta": 0.0006225160288180556
+    },
+    {
+      "actor": "HBO Max (2020-2023)",
+      "share_start": 0.04509686924235751,
+      "share_end": 0.04241973709239225,
+      "share_delta": -0.0026771321499652542
+    },
+    {
+      "actor": "Peacock Premium",
+      "share_start": 0.020591428898911593,
+      "share_end": 0.04124246694557677,
+      "share_delta": 0.020651038046665175
+    },
+    {
+      "actor": "YouTube Premium",
+      "share_start": 0.020749988888968875,
+      "share_end": 0.027701292422649595,
+      "share_delta": 0.00695130353368072
+    },
+    {
+      "actor": "Discovery+",
+      "share_start": 0.02584869192745464,
+      "share_end": 0.02605077282334161,
+      "share_delta": 0.0002020808958869691
+    },
+    {
+      "actor": "Starz",
+      "share_start": 0.024932954379021925,
+      "share_end": 0.022781553169937643,
+      "share_delta": -0.002151401209084282
+    },
+    {
+      "actor": "Others",
+      "share_start": 0.13493285383121684,
+      "share_end": 0.14191069585594274,
+      "share_delta": 0.006977842024725963
+    }
+  ],
   "qc": {
     "n_rows": 951,
     "n_actors": 131,

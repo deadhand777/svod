@@ -11,13 +11,16 @@ from svod._internal.analysis import (
     cluster_actors,
     concentration,
     market_summary,
+    momentum,
     net_adds,
     shap_summary,
+    share_shift,
 )
 from svod._internal.charts import (
     fig_cluster_scatter,
     fig_concentration,
     fig_market_overview,
+    fig_share_treemap,
     fig_waterfall,
 )
 from svod._internal.cli import get_parser, main
@@ -34,12 +37,15 @@ __all__: list[str] = [
     "fig_cluster_scatter",
     "fig_concentration",
     "fig_market_overview",
+    "fig_share_treemap",
     "fig_waterfall",
     "get_parser",
     "load_panel",
     "main",
     "market_summary",
+    "momentum",
     "net_adds",
     "qc_report",
     "shap_summary",
+    "share_shift",
 ]

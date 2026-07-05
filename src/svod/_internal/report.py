@@ -11,10 +11,18 @@ from svod._internal.analysis import (
     cluster_actors,
     concentration,
     market_summary,
+    momentum,
     net_adds,
     shap_summary,
+    share_shift,
 )
-from svod._internal.charts import fig_cluster_scatter, fig_concentration, fig_market_overview, fig_waterfall
+from svod._internal.charts import (
+    fig_cluster_scatter,
+    fig_concentration,
+    fig_market_overview,
+    fig_share_treemap,
+    fig_waterfall,
+)
 from svod._internal.data import load_panel, qc_report
 
 if TYPE_CHECKING:
@@ -59,12 +67,15 @@ def build_report(
     features = actor_features(panel)
     clusters = cluster_actors(features)
     adds = net_adds(panel)
+    mom = momentum(market)
+    shift = share_shift(panel)
 
     figures = {
         "market": fig_market_overview(market),
         "concentration": fig_concentration(conc),
         "clusters": fig_cluster_scatter(features, clusters.labels),
         "waterfall": fig_waterfall(adds),
+        "treemap": fig_share_treemap(shift),
     }
     for name, fig in figures.items():
         fig.write_html(charts_dir / f"{name}.html", include_plotlyjs="cdn")
@@ -90,6 +101,8 @@ def build_report(
             "centers": _records(clusters.centers),
         },
         "net_adds": _records(adds),
+        "momentum": _records(mom),
+        "share_shift": _records(shift),
         "qc": {
             "n_rows": qc.n_rows,
             "n_actors": qc.n_actors,

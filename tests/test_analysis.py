@@ -7,7 +7,16 @@ from typing import TYPE_CHECKING
 import pandas as pd
 import pytest
 
-from svod import actor_features, cluster_actors, concentration, market_summary, net_adds, shap_summary
+from svod import (
+    actor_features,
+    cluster_actors,
+    concentration,
+    market_summary,
+    momentum,
+    net_adds,
+    shap_summary,
+    share_shift,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -107,6 +116,33 @@ def test_net_adds_waterfall(synthetic_panel: pd.DataFrame) -> None:
         "subscribers",
     ].sum()
     assert adds["net_adds"].sum() == total_end - total_start
+
+
+def test_momentum_adds_acceleration(synthetic_panel: pd.DataFrame) -> None:
+    """qoq_acceleration is the second difference of QoQ growth; leading NaNs."""
+    market = market_summary(synthetic_panel)
+    out = momentum(market)
+    assert "qoq_acceleration" in out.columns
+    assert pd.isna(out["qoq_acceleration"].iloc[0])
+    assert pd.isna(out["qoq_acceleration"].iloc[1])
+    assert out["qoq_acceleration"].iloc[2] == pytest.approx(
+        out["qoq_growth"].iloc[2] - out["qoq_growth"].iloc[1],
+    )
+    # original frame is untouched
+    assert "qoq_acceleration" not in market.columns
+
+
+def test_share_shift_is_additive(synthetic_panel: pd.DataFrame) -> None:
+    """Shares sum to 1, deltas sum to 0, Others closes the frame."""
+    shift = share_shift(synthetic_panel)
+    assert list(shift.columns) == ["actor", "share_start", "share_end", "share_delta"]
+    assert shift["actor"].iloc[-1] == "Others"
+    assert "Partial" not in set(shift["actor"])
+    assert shift["share_end"].sum() == pytest.approx(1.0)
+    assert shift["share_delta"].sum() == pytest.approx(0.0)
+    # Challenger A grew from ~7.5% to ~13.9% -> positive share delta
+    challenger = shift.loc[shift["actor"] == "Challenger A", "share_delta"].item()
+    assert challenger > 0
 
 
 def test_shap_summary_writes_png(synthetic_panel: pd.DataFrame, tmp_path: Path) -> None:

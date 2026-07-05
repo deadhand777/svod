@@ -5,7 +5,7 @@
 
 ## The market in one number
 
-Total US SVOD subscriptions grew from 372.6M in 2021Q1 to 510.3M in 2022Q4. But the growth rate did not hold: year-over-year growth decelerated every single quarter of 2022, from 23.2% (Q1) to 20.2% (Q2) to 18.7% (Q3) to 15.3% (Q4) — a monotonic slowdown, not a one-off dip.
+Total US SVOD subscriptions grew from 372.6M in 2021Q1 to 510.3M in 2022Q4. But the growth rate did not hold: year-over-year growth decelerated every single quarter of 2022, from 23.2% (Q1) to 20.2% (Q2) to 18.7% (Q3) to 15.3% (Q4) — a monotonic slowdown, not a one-off dip. The second-order view confirms this: quarter-over-quarter growth acceleration stays negative across 2022, so the slowdown itself is steady rather than driven by a single sharp quarter.
 
 Netflix, the market's bellwether, lost 795,171 subscribers net over the year (67.82M → 67.03M), the single most negative net-add figure of any platform in the dataset. The loss was concentrated in H1 2022 (-607k in Q1, -1.1M in Q2), with only a partial rebound in H2 (+94k Q3, +820k Q4) that was not enough to offset the first-half decline.
 
@@ -21,7 +21,7 @@ The twist: giants are not a monolith, and they don't even form their own cluster
 
 ## Who moved the market
 
-The net-add ranking over 2021Q4→2022Q4 confirms the two-speed pattern directly: Paramount+ (+14,981,000) and Peacock Premium (+11,915,408) are the market's largest gainers by a wide margin, with Amazon Prime Video (+5,245,681) a distant third. At the other end, Netflix (-795,171) and Showtime Streaming (-433,674) are the two clearest net losers, with Sling TV (-152,000) also declining. The broad field is not uniformly weak — it just lacks the challenger segment's outsized gains.
+The net-add ranking over 2021Q4→2022Q4 confirms the two-speed pattern directly: Paramount+ (+14,981,000) and Peacock Premium (+11,915,408) are the market's largest gainers by a wide margin, with Amazon Prime Video (+5,245,681) a distant third. At the other end, Netflix (-795,171) and Showtime Streaming (-433,674) are the two clearest net losers, with Sling TV (-152,000) also declining. The broad field is not uniformly weak — it just lacks the challenger segment's outsized gains. The market-share shift over the same window tells the same story: it is the same gainers that are gaining share and the same losers that are ceding it, not just raw subscriber counts.
 
 <iframe src="charts/waterfall.html" width="100%" height="520" frameborder="0"></iframe>
 
@@ -32,5 +32,9 @@ Market concentration fell steadily throughout the entire two-year window: HHI dr
 For 2023, the implication is that overall market growth should keep normalizing while the share war between challengers and giants intensifies further.
 
 <iframe src="charts/concentration.html" width="100%" height="520" frameborder="0"></iframe>
+
+The treemap below breaks that deconcentration down by actor: tile size is ending share, tile color is the share-point change over the window, so the orange (share-gaining) and red (share-losing) tiles side by side are what the falling HHI and CR4 actually consist of.
+
+<iframe src="charts/treemap.html" width="100%" height="520" frameborder="0"></iframe>
 
 *Methodology, quality checks and reproducibility: see [Methodology](methodology.md).*

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import pandas as pd  # noqa: TC002 -- task brief mandates this runtime import verbatim; only used in annotations here
+import pandas as pd
 import plotly.graph_objects as go
 
 from svod import (
@@ -12,9 +12,11 @@ from svod import (
     fig_cluster_scatter,
     fig_concentration,
     fig_market_overview,
+    fig_share_treemap,
     fig_waterfall,
     market_summary,
     net_adds,
+    share_shift,
 )
 
 
@@ -31,3 +33,27 @@ def test_chart_builders_return_figures(synthetic_panel: pd.DataFrame) -> None:
     for fig in figures:
         assert isinstance(fig, go.Figure)
         assert len(fig.data) >= 1
+
+
+def test_share_treemap_returns_figure(synthetic_panel: pd.DataFrame) -> None:
+    """Treemap builder returns a figure with one treemap trace."""
+    fig = fig_share_treemap(share_shift(synthetic_panel))
+    assert isinstance(fig, go.Figure)
+    assert len(fig.data) == 1
+    assert fig.data[0].type == "treemap"
+
+
+def test_market_overview_annotation_degrades() -> None:
+    """A summary too short to compute YoY still builds, without annotations."""
+    market = pd.DataFrame(
+        {
+            "quarter": ["2021Q1", "2021Q2"],
+            "total_subscribers": [100, 110],
+            "active_actors": [2, 2],
+            "qoq_growth": [float("nan"), 0.1],
+            "yoy_growth": [float("nan"), float("nan")],
+        },
+    )
+    fig = fig_market_overview(market)
+    assert isinstance(fig, go.Figure)
+    assert len(fig.layout.annotations) == 0

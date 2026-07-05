@@ -205,6 +205,86 @@ def net_adds(
     return pd.DataFrame(rows)
 
 
+def momentum(market: pd.DataFrame) -> pd.DataFrame:
+    """Decompose growth momentum from a market summary.
+
+    Adds the second-order growth signal: quarter-over-quarter acceleration,
+    the change in QoQ growth between consecutive quarters. Negative values
+    mark decelerating quarters.
+
+    Parameters:
+        market: Output of `market_summary`, with a `qoq_growth` column.
+
+    Returns:
+        A copy of `market` with an added `qoq_acceleration` column.
+    """
+    out = market.copy()
+    out["qoq_acceleration"] = out["qoq_growth"].diff()
+    return out
+
+
+def share_shift(
+    panel: pd.DataFrame,
+    *,
+    start: str = "2021Q4",
+    end: str = "2022Q4",
+    top: int = 12,
+) -> pd.DataFrame:
+    """Compute per-actor market-share shift between two quarters.
+
+    Only actors present in both quarters are attributed. Shares are expressed
+    relative to the subscribers of that both-quarters cohort, not the full
+    per-quarter market total, matching the survivorship convention used by
+    `net_adds`, so they are not directly comparable to full-market
+    concentration shares. The `top` largest actors by ending share are listed
+    individually; the remainder collapse into an `Others` residual so shares
+    and deltas stay additive.
+
+    Parameters:
+        panel: Tidy panel with `actor`, `quarter`, `subscribers` columns.
+        start: Baseline quarter.
+        end: Comparison quarter.
+        top: Number of largest actors (by ending share) to list individually.
+
+    Returns:
+        DataFrame with `actor`, `share_start`, `share_end` and `share_delta`
+        columns, `Others` last.
+    """
+    # pivot_table silently aggregates duplicate (actor, quarter) rows instead of raising; pivot fails loudly.
+    wide = (
+        panel[panel["quarter"].isin([start, end])]  # noqa: PD010
+        .pivot(index="actor", columns="quarter", values="subscribers")
+        .dropna()
+    )
+    shares = pd.DataFrame(
+        {
+            "share_start": wide[start] / wide[start].sum(),
+            "share_end": wide[end] / wide[end].sum(),
+        },
+    )
+    shares["share_delta"] = shares["share_end"] - shares["share_start"]
+    ranked = shares.sort_values("share_end", ascending=False)
+    rows = [
+        {
+            "actor": str(actor),
+            "share_start": float(row.share_start),
+            "share_end": float(row.share_end),
+            "share_delta": float(row.share_delta),
+        }
+        for actor, row in ranked.head(top).iterrows()
+    ]
+    residual = ranked.iloc[top:]
+    rows.append(
+        {
+            "actor": "Others",
+            "share_start": float(residual["share_start"].sum()),
+            "share_end": float(residual["share_end"].sum()),
+            "share_delta": float(residual["share_delta"].sum()),
+        },
+    )
+    return pd.DataFrame(rows)
+
+
 def shap_summary(features: pd.DataFrame, labels: pd.Series, output_png: str | Path) -> Path:
     """Explain cluster membership with a surrogate model and SHAP.
 
