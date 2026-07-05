@@ -25,12 +25,79 @@ uv.lock
 .pytest_cache/
 .ruff_cache/
 __pycache__/
+.eslintcache
+.cache
+.cache/
+*.tsbuildinfo
 
 # claude
 .claude/
 CLAUDE.md
 .superpowers/
+docs/superpowers/
 
 # proprietary input data — never commit
 /data/
 local/
+
+# dependencies (bun install)
+node_modules
+
+# docs
+_build
+docs/requirements.txt
+
+# python
+__pycache__
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache
+.pytest_cache/
+.ruff_cache
+.ruff_cache/
+*.py[cod]
+.venv
+.venv/
+.venvs/
+/build/
+/dist/
+
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+.coverage*
+/.pdm-build/
+/htmlcov/
+/site/
+uv.lock
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# IntelliJ based IDEs
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Kiro
+.kiro/
+
+# Finder (MacOS) folder config
+.DS_Store
