@@ -7,7 +7,7 @@ repo_url = "https://github.com/deadhand777/svod"
 repo_name = "deadhand777/svod"
 edit_uri = "edit/main/docs/"
 copyright = "Copyright &copy; 2026 deadhand777"
-extra_css = ["css/apidocs.css"]
+extra_css = ["css/apidocs.css", "css/dataxis.css"]
 extra_javascript = ["js/feedback.js"]
 nav = [
   { "Home" = [
@@ -65,8 +65,8 @@ toggle.name = "Switch to light mode"
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
-primary = "teal"
-accent = "purple"
+primary = "indigo"
+accent = "orange"
 toggle.icon = "material/weather-sunny"
 toggle.name = "Switch to dark mode"
 
@@ -74,7 +74,7 @@ toggle.name = "Switch to dark mode"
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 primary = "black"
-accent = "lime"
+accent = "orange"
 toggle.icon = "material/weather-night"
 toggle.name = "Switch to system preference"
 
