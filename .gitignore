@@ -19,6 +19,7 @@
 /htmlcov/
 /site/
 uv.lock
+.copier-answers.yml
 
 # cache
 .cache/
@@ -29,12 +30,9 @@ __pycache__/
 .cache
 .cache/
 *.tsbuildinfo
-
-# claude
 .claude/
 CLAUDE.md
 .superpowers/
-docs/superpowers/
 
 # proprietary input data — never commit
 /data/

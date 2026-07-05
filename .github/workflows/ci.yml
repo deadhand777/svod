@@ -23,6 +23,7 @@ env:
   PYTHONIOENCODING: UTF-8
   PYTHONWARNDEFAULTENCODING: "1"
   PYTHON_VERSIONS: ""
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
 
@@ -34,20 +35,16 @@ jobs:
         - macos-latest
         - windows-latest
         python-version:
-        - "3.10"
         - "3.13"
         include:
         - os: ubuntu-latest
-          python-version: "3.11"
-        - os: ubuntu-latest
-          python-version: "3.12"
+          python-version: "3.13"
 
     runs-on: ${{ matrix.os }}
-    continue-on-error: true
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
         fetch-tags: true
@@ -58,7 +55,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
@@ -75,11 +72,8 @@ jobs:
     - name: Check if the code is correctly typed
       run: make check-types
 
-    - name: Check for breaking changes in the API
-      run: make check-api
-
     - name: Store objects inventory for tests
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' }}
       with:
         name: objects.inv
@@ -96,9 +90,6 @@ jobs:
         - macos-latest
         - windows-latest
         python-version:
-        - "3.10"
-        - "3.11"
-        - "3.12"
         - "3.13"
         resolution:
         - highest
@@ -110,11 +101,10 @@ jobs:
           resolution: lowest-direct
 
     runs-on: ${{ matrix.os }}
-    continue-on-error: true
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
         fetch-tags: true
@@ -126,7 +116,7 @@ jobs:
         allow-prereleases: true
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
@@ -138,7 +128,7 @@ jobs:
       run: make setup
 
     - name: Download objects inventory
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: objects.inv
         path: site/

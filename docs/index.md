@@ -4,6 +4,6 @@ hide:
 - feedback
 ---
 
-See the [Analysis](analysis.md) page for the US SVOD market 2021–2022 write-up (with interactive charts and [methodology](methodology.md)).
+The [Analysis](analysis.md) page presents key insights into the US SVOD market for 2021–2022. See the [methodology](methodology.md) page for details on how these findings were produced.
 
 --8<-- "README.md"
